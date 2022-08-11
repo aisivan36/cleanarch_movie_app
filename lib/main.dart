@@ -1,3 +1,5 @@
+import 'package:cleanarch_movie_app/core/styles/colors.dart';
+import 'package:cleanarch_movie_app/core/styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +18,22 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         /// General things
+        // ChangeNotifierProvider(create:
+        // (context) => ,
+        // )
       ],
+      child: MaterialApp(
+        title: 'Movie Database App',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark().copyWith(
+          primaryColor: kRichBlack,
+          scaffoldBackgroundColor: kRichBlack,
+          textTheme: kTextTheme,
+          colorScheme: kColorScheme.copyWith(
+            secondary: Colors.redAccent,
+          ),
+        ),
+      ),
     );
   }
 }
