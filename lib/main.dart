@@ -1,12 +1,15 @@
+import 'package:cleanarch_movie_app/core/presentation/pages/home_page.dart';
+import 'package:cleanarch_movie_app/core/presentation/provider/home_notifier.dart';
 import 'package:cleanarch_movie_app/core/styles/colors.dart';
 import 'package:cleanarch_movie_app/core/styles/text_styles.dart';
+import 'package:cleanarch_movie_app/core/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'injection.dart' as di;
 
 void main() {
-  //  TODO declare an Injection here
+  di.init();
   runApp(const MyApp());
 }
 
@@ -18,9 +21,9 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         /// General things
-        // ChangeNotifierProvider(create:
-        // (context) => ,
-        // )
+        ChangeNotifierProvider(
+          create: (context) => di.locator<HomeNotifier>(),
+        )
       ],
       child: MaterialApp(
         title: 'Movie Database App',
@@ -33,6 +36,27 @@ class MyApp extends StatelessWidget {
             secondary: Colors.redAccent,
           ),
         ),
+        home: const HomePage(),
+        navigatorObservers: [routeObserver],
+        onGenerateRoute: (settings) {
+          switch (settings.name) {
+            case '/home':
+              return MaterialPageRoute(
+                builder: (context) => const HomePage(),
+              );
+
+            default:
+              return MaterialPageRoute(
+                builder: (context) {
+                  return const Scaffold(
+                    body: Center(
+                      child: Text('Page not found'),
+                    ),
+                  );
+                },
+              );
+          }
+        },
       ),
     );
   }
