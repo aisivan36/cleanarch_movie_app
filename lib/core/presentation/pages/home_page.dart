@@ -1,3 +1,4 @@
+import 'package:cleanarch_movie_app/core/presentation/pages/watchlist_page.dart';
 import 'package:cleanarch_movie_app/core/presentation/provider/home_notifier.dart';
 import 'package:cleanarch_movie_app/core/styles/colors.dart';
 import 'package:cleanarch_movie_app/core/styles/text_styles.dart';
@@ -157,10 +158,55 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 },
                                 leading: const Icon(Icons.movie),
                                 title: const Text('Movies'),
+                                selected:
+                                    value.state == GeneralContentType.movie,
+                                style: ListTileStyle.drawer,
+                                iconColor: Colors.white70,
+                                textColor: Colors.white70,
+                                selectedColor: Colors.white,
+                                selectedTileColor: Colors.redAccent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                              ),
+                              ListTile(
+                                key: const Key('tvListTile'),
+                                onTap: () {
+                                  context
+                                      .read<HomeNotifier>()
+                                      .setState(GeneralContentType.tv);
+
+                                  toggle();
+                                },
+                                leading: const Icon(Icons.tv),
+                                title: const Text('Tv Show'),
+                                selected: value.state == GeneralContentType.tv,
+                                style: ListTileStyle.drawer,
+                                iconColor: Colors.white70,
+                                textColor: Colors.white70,
+                                selectedColor: Colors.white,
+                                selectedTileColor: Colors.redAccent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
                               ),
                             ],
                           );
                         },
+                      ),
+                      ListTile(
+                        key: const Key('watchlistListTile'),
+                        onTap: () {
+                          Navigator.pushNamed(context, WatchlistPage.routeName);
+                        },
+                        leading: const Icon(Icons.save_alt),
+                        title: const Text('Watchlist'),
+                        iconColor: Colors.white70,
+                        textColor: Colors.white70,
+                      ),
+                      ListTile(
+                        key: const Key('aboutListTile'),
+                        onTap: () {},
                       ),
                     ],
                   ),
