@@ -2,7 +2,7 @@ import 'package:cleanarch_movie_app/core/utils/state_enum.dart';
 import 'package:flutter/cupertino.dart';
 
 class HomeNotifier extends ChangeNotifier {
-  GeneralContentType _state = GeneralContentType.movie;
+  GeneralContentType _state = GeneralContentType.tv;
 
   GeneralContentType get state => _state;
 

@@ -2,8 +2,8 @@ import 'package:cleanarch_movie_app/core/presentation/pages/watchlist_page.dart'
 import 'package:cleanarch_movie_app/core/presentation/provider/home_notifier.dart';
 import 'package:cleanarch_movie_app/core/styles/colors.dart';
 import 'package:cleanarch_movie_app/core/styles/text_styles.dart';
+import 'package:cleanarch_movie_app/core/utils/routes.dart';
 import 'package:cleanarch_movie_app/core/utils/state_enum.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -113,7 +113,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ),
                             ),
                           ),
-                          const SizedBox(width: 16.0),
+                          const SizedBox(width: 17.0),
                           Expanded(
                             flex: 3,
                             child: Column(
@@ -175,6 +175,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   context
                                       .read<HomeNotifier>()
                                       .setState(GeneralContentType.tv);
+                                  print(value.state);
 
                                   toggle();
                                 },
@@ -206,9 +207,94 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ),
                       ListTile(
                         key: const Key('aboutListTile'),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, aboutRoute);
+                        },
+                        leading: const Icon(Icons.info_outline),
+                        title: const Text('About'),
+                        iconColor: Colors.white70,
+                        textColor: Colors.white70,
                       ),
                     ],
+                  ),
+                ),
+              ),
+
+              /// Slide Page
+              Transform(
+                transform: Matrix4.identity()
+                  ..translate(slide)
+                  ..scale(scale)
+                  ..rotateZ(rotate),
+                alignment: Alignment.centerLeft,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(radius),
+                  child: AnimatedBuilder(
+                    animation: _colorAnimationController,
+                    builder: (context, child) {
+                      return Scaffold(
+                        extendBodyBehindAppBar: true,
+                        appBar: AppBar(
+                          toolbarOpacity: toolbarOpacity,
+                          leading: IconButton(
+                            key: const Key('drawerButton'),
+                            icon: const Icon(Icons.menu),
+                            splashRadius: 20.0,
+                            onPressed: toggle,
+                          ),
+                          title: const Text(
+                            'MDB',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                            ),
+                          ),
+                          actions: [
+                            Consumer<HomeNotifier>(
+                              builder: (context, value, child) {
+                                final state = value.state;
+
+                                return IconButton(
+                                  key: const Key('searchButton'),
+                                  icon: const Icon(Icons.search),
+                                  onPressed: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      state == GeneralContentType.movie
+                                          ? movieSearchRoute
+                                          : tvSearchRoute,
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ],
+                          backgroundColor: _colorTween.value,
+                          elevation: 0.0,
+                        ),
+                        body: NotificationListener<ScrollNotification>(
+                          onNotification: _scrollListener,
+                          child: Consumer<HomeNotifier>(
+                            builder: (context, value, child) {
+                              final state = value.state;
+                              if (state == GeneralContentType.movie) {
+                                return const Scaffold(
+                                  body: Center(
+                                    child: Text('MainMoviePage'),
+                                  ),
+                                );
+                              } else {
+                                return const Scaffold(
+                                  body: Center(
+                                    child: Text('MainTVPage'),
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
