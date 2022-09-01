@@ -26,20 +26,18 @@ class SubHeading extends StatelessWidget {
         children: [
           Text(text, style: kHeading6),
           InkWell(
-              key: Key(valueKey!),
-              onTap: onSeeMoreTapped,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  children: const [
-                    Text('See More'),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      size: 16.0,
-                    ),
-                  ],
-                ),
-              )),
+            key: Key(valueKey!),
+            onTap: onSeeMoreTapped,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: const [
+                  Text('See More'),
+                  Icon(Icons.arrow_forward_ios, size: 16.0),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );
