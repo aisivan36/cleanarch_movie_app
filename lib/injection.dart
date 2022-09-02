@@ -10,6 +10,8 @@ import 'package:cleanarch_movie_app/movie/domain/usecases/get_popular_movies.dar
 import 'package:cleanarch_movie_app/movie/domain/usecases/get_top_rated_movies.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_images_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_list_notifier.dart';
+import 'package:cleanarch_movie_app/movie/presentation/provider/popular_movies_notifier.dart';
+import 'package:cleanarch_movie_app/movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
@@ -27,6 +29,17 @@ void init() {
         getPopularMovies: locator(),
         getTopRatedMovies: locator(),
       ));
+
+  locator.registerFactory(
+    () => PopularMoviesNotifier(
+      locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => TopRatedMoviesNotifier(
+      locator(),
+    ),
+  );
 
   /// Images Notifier
   locator.registerFactory(
