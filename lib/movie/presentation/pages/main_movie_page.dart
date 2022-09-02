@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cleanarch_movie_app/core/utils/state_enum.dart';
 import 'package:cleanarch_movie_app/core/utils/urls.dart';
+import 'package:cleanarch_movie_app/movie/presentation/pages/popular_movies_page.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_images_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_list_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/widgets/minimal_detail.dart';
@@ -226,7 +227,7 @@ class _MainMoviePageState extends State<MainMoviePage> {
               text: 'Popular',
               valueKey: 'seePopularMovies',
               onSeeMoreTapped: () => () {
-                // TODO Fixed this one for navigating to a page
+                Navigator.pushNamed(context, PopularMoviesPage.routeName);
               },
             ),
           ],

@@ -5,6 +5,8 @@ import 'package:cleanarch_movie_app/core/styles/text_styles.dart';
 import 'package:cleanarch_movie_app/core/utils/utils.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_list_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_images_notifier.dart';
+import 'package:cleanarch_movie_app/movie/presentation/provider/popular_movies_notifier.dart';
+import 'package:cleanarch_movie_app/movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,12 +28,20 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => di.locator<HomeNotifier>(),
         ),
+
+        /// Movies Providers
         ChangeNotifierProvider(
           create: (context) => di.locator<MovieListNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (context) => di.locator<MovieImagesNotifier>(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => di.locator<PopularMoviesNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => di.locator<TopRatedMoviesNotifier>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Movie Database App',
