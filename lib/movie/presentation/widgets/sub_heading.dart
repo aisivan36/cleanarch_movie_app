@@ -10,7 +10,7 @@ class SubHeading extends StatelessWidget {
   }) : super(key: key);
   final String? valueKey;
   final String text;
-  final Function() onSeeMoreTapped;
+  final void Function()? onSeeMoreTapped;
 
   @override
   Widget build(BuildContext context) {

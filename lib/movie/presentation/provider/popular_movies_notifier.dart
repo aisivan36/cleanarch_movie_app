@@ -11,8 +11,8 @@ class PopularMoviesNotifier extends ChangeNotifier {
   RequestState _state = RequestState.empty;
   RequestState get state => _state;
 
-  List<Movie> _movie = [];
-  List<Movie> get movie => _movie;
+  List<Movie> _movies = [];
+  List<Movie> get movies => _movies;
 
   String _message = '';
   String get message => _message;
@@ -28,7 +28,7 @@ class PopularMoviesNotifier extends ChangeNotifier {
       _state = RequestState.error;
       notifyListeners();
     }, (moviesData) {
-      _movie = moviesData;
+      _movies = moviesData;
       _state = RequestState.loaded;
       notifyListeners();
     });
