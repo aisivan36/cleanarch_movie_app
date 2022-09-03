@@ -3,6 +3,8 @@ import 'package:cleanarch_movie_app/core/presentation/provider/home_notifier.dar
 import 'package:cleanarch_movie_app/core/styles/colors.dart';
 import 'package:cleanarch_movie_app/core/styles/text_styles.dart';
 import 'package:cleanarch_movie_app/core/utils/utils.dart';
+import 'package:cleanarch_movie_app/movie/presentation/pages/popular_movies_page.dart';
+import 'package:cleanarch_movie_app/movie/presentation/pages/top_rated_movies_page.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_list_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_images_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/popular_movies_notifier.dart';
@@ -61,6 +63,14 @@ class MyApp extends StatelessWidget {
             case '/home':
               return MaterialPageRoute(
                 builder: (context) => const HomePage(),
+              );
+            case PopularMoviesPage.routeName:
+              return MaterialPageRoute(
+                builder: (context) => const PopularMoviesPage(),
+              );
+            case TopRatedMoviesPage.routeName:
+              return MaterialPageRoute(
+                builder: (context) => const TopRatedMoviesPage(),
               );
 
             default:
