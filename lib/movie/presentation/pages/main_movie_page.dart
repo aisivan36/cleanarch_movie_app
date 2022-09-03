@@ -8,6 +8,7 @@ import 'package:cleanarch_movie_app/movie/presentation/provider/movie_images_not
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_list_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/widgets/minimal_detail.dart';
 import 'package:cleanarch_movie_app/movie/presentation/widgets/sub_heading.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -226,7 +227,8 @@ class _MainMoviePageState extends State<MainMoviePage> {
             SubHeading(
               text: 'Popular',
               valueKey: 'seePopularMovies',
-              onSeeMoreTapped: () => () {
+              onSeeMoreTapped: () {
+                if (kDebugMode) print('tapped');
                 Navigator.pushNamed(context, PopularMoviesPage.routeName);
               },
             ),
