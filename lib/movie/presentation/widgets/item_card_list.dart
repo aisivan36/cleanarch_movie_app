@@ -14,6 +14,7 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO Wrap this container within GestureDetector navigate it into Movie Detail Screen
     return Container(
       padding: const EdgeInsets.all(8.0),
       margin: const EdgeInsets.only(bottom: 16.0),
@@ -46,6 +47,40 @@ class ItemCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: kHeading6,
                   maxLines: 1,
+                ),
+                const SizedBox(
+                  height: 4.0,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                        vertical: 2.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      child: Text(
+                        movie.releaseDate!.split('-').reversed.join('/'),
+                      ),
+                    ),
+                    const SizedBox(width: 16.0),
+                    const Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                      size: 18.0,
+                    ),
+                    const SizedBox(width: 4.0),
+                    Text((movie.voteAverage! / 2).toStringAsFixed(1))
+                  ],
+                ),
+                const SizedBox(height: 16.0),
+                Text(
+                  movie.overview ?? '-',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
