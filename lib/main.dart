@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cleanarch_movie_app/core/presentation/pages/home_page.dart';
 import 'package:cleanarch_movie_app/core/presentation/provider/home_notifier.dart';
 import 'package:cleanarch_movie_app/core/styles/colors.dart';
@@ -14,7 +16,18 @@ import 'package:provider/provider.dart';
 
 import 'injection.dart' as di;
 
+/// Certificate issue on Android
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 void main() {
+  HttpOverrides.global = MyHttpOverrides();
   di.init();
   runApp(const MyApp());
 }
