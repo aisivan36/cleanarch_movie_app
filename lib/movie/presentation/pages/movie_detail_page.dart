@@ -1,3 +1,5 @@
+import 'package:cleanarch_movie_app/movie/domain/entities/movie.dart';
+import 'package:cleanarch_movie_app/movie/domain/entities/movie_detail.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetailPage extends StatefulWidget {
@@ -23,6 +25,24 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       // TODO
     });
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class MovieDetailContent extends StatelessWidget {
+  final MovieDetail movie;
+  final List<Movie> recommendations;
+  final bool isAddedToWatchlist;
+
+  const MovieDetailContent({
+    super.key,
+    required this.movie,
+    required this.isAddedToWatchlist,
+    required this.recommendations,
+  });
 
   @override
   Widget build(BuildContext context) {
