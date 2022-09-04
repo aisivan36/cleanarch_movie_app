@@ -1,6 +1,7 @@
 import 'package:cleanarch_movie_app/movie/domain/entities/movie.dart';
 import 'package:cleanarch_movie_app/movie/domain/entities/movie_detail.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MovieDetailPage extends StatefulWidget {
   static const String routeName = '/movie-detail';
@@ -22,7 +23,10 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     super.initState();
 
     Future.microtask(() {
-      // TODO
+      Provider.of<MovieDetailNotifier>(context, listen: false)
+          .fetchMovieDetail(widget.id);
+      Provider.of<MovieDetailNotifier>(context, listen: false)
+          .loadMatchlistStatus(widget.id);
     });
   }
 
