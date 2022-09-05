@@ -5,8 +5,10 @@ import 'package:cleanarch_movie_app/core/presentation/provider/home_notifier.dar
 import 'package:cleanarch_movie_app/core/styles/colors.dart';
 import 'package:cleanarch_movie_app/core/styles/text_styles.dart';
 import 'package:cleanarch_movie_app/core/utils/utils.dart';
+import 'package:cleanarch_movie_app/movie/presentation/pages/movie_detail_page.dart';
 import 'package:cleanarch_movie_app/movie/presentation/pages/popular_movies_page.dart';
 import 'package:cleanarch_movie_app/movie/presentation/pages/top_rated_movies_page.dart';
+import 'package:cleanarch_movie_app/movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_list_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_images_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/popular_movies_notifier.dart';
@@ -57,6 +59,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => di.locator<TopRatedMoviesNotifier>(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => di.locator<MovieDetailNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => di.locator<MovieImagesNotifier>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Movie Database App',
@@ -84,6 +92,13 @@ class MyApp extends StatelessWidget {
             case TopRatedMoviesPage.routeName:
               return MaterialPageRoute(
                 builder: (context) => const TopRatedMoviesPage(),
+              );
+
+            case MovieDetailPage.routeName:
+              return MaterialPageRoute(
+                builder: (context) =>
+                    MovieDetailPage(id: settings.arguments as int),
+                settings: settings,
               );
 
             default:
