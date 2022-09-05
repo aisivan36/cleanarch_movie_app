@@ -1,5 +1,6 @@
 import 'package:cleanarch_movie_app/movie/domain/entities/movie.dart';
 import 'package:cleanarch_movie_app/movie/domain/entities/movie_detail.dart';
+import 'package:cleanarch_movie_app/movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +27,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       Provider.of<MovieDetailNotifier>(context, listen: false)
           .fetchMovieDetail(widget.id);
       Provider.of<MovieDetailNotifier>(context, listen: false)
-          .loadMatchlistStatus(widget.id);
+          .loadWatchlistStatus(widget.id);
     });
   }
 
