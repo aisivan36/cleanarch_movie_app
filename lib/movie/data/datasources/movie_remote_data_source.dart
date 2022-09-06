@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:cleanarch_movie_app/core/utils/exception.dart';
 import 'package:cleanarch_movie_app/core/utils/urls.dart';
 import 'package:cleanarch_movie_app/movie/data/models/media_image_model.dart';
