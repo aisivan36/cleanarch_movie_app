@@ -61,8 +61,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     final response = await client.get(Uri.parse(Urls.movieDetail(id)));
 
     if (response.statusCode == 200) {
-      return MovieDetailResponse.fromJson(
-          json.decode(json.decode(response.body)));
+      return MovieDetailResponse.fromJson(json.decoder.convert(response.body));
     } else {
       throw ServerException();
     }
