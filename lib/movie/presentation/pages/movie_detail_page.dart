@@ -91,6 +91,7 @@ class _MovieDetailContentState extends State<MovieDetailContent> {
     return CustomScrollView(
       key: const Key('movieDetailScrollView'),
       slivers: [
+        // TODO Fix this issue when navigating into suggested page when its back it does not return to the previous page instead it's gone away
         SliverAppBar(
           pinned: true,
           expandedHeight: 250.0,
@@ -363,8 +364,11 @@ class _ShowRecommendations extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () => showModalBottomSheet(
                       context: context,
-                      builder: (context) =>
-                          MinimalDetail(movie: recommendation),
+                      builder: (context) => MinimalDetail(
+                        movie: recommendation,
+                        // keyValue: 'Prev',
+                        // closeKeyValue: 'closed',
+                      ),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10.0),
