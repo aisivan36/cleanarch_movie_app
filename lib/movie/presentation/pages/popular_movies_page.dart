@@ -43,13 +43,12 @@ class _PopularMoviesPageState extends State<PopularMoviesPage> {
               );
             } else if (value.state == RequestState.loaded) {
               return FadeInUp(
-                // TODO add some dependencies
+                from: 20,
                 child: ListView.builder(
+                  key: const Key('popularMoviesListView'),
                   itemCount: value.movies.length,
                   itemBuilder: (context, index) {
                     final movie = value.movies[index];
-
-                    /// TODO change listview to ItemCard widget
                     return ItemCard(movie: movie);
                   },
                 ),
