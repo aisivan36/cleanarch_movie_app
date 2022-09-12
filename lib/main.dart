@@ -13,6 +13,7 @@ import 'package:cleanarch_movie_app/movie/presentation/provider/movie_list_notif
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_images_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/popular_movies_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/top_rated_movies_notifier.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -96,8 +97,11 @@ class MyApp extends StatelessWidget {
 
             case MovieDetailPage.routeName:
               return MaterialPageRoute(
-                builder: (context) =>
-                    MovieDetailPage(id: settings.arguments as int),
+                builder: (context) {
+                  if (kDebugMode) print('Route ${settings.arguments}');
+
+                  return MovieDetailPage(id: settings.arguments as int);
+                },
                 settings: settings,
               );
 
