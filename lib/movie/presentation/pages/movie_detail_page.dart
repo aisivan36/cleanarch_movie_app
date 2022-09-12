@@ -6,6 +6,7 @@ import 'package:cleanarch_movie_app/core/utils/urls.dart';
 import 'package:cleanarch_movie_app/movie/domain/entities/genre.dart';
 import 'package:cleanarch_movie_app/movie/domain/entities/movie.dart';
 import 'package:cleanarch_movie_app/movie/domain/entities/movie_detail.dart';
+import 'package:cleanarch_movie_app/movie/presentation/pages/popular_movies_page.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/widgets/minimal_detail.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +94,16 @@ class _MovieDetailContentState extends State<MovieDetailContent> {
       slivers: [
         // TODO Fix this issue when navigating into suggested page when its back it does not return to the previous page instead it's gone away
         SliverAppBar(
+          leading: InkWell(
+            onTap: () {
+              Navigator.popAndPushNamed(context, PopularMoviesPage.routeName);
+            },
+            child: const Icon(Icons.arrow_back_ios_outlined),
+          ),
+          automaticallyImplyLeading: false,
+          key: Key(
+            widget.movie.id.toString(),
+          ),
           pinned: true,
           expandedHeight: 250.0,
           flexibleSpace: FlexibleSpaceBar(
@@ -363,11 +374,14 @@ class _ShowRecommendations extends StatelessWidget {
                   duration: const Duration(milliseconds: 500),
                   child: GestureDetector(
                     onTap: () => showModalBottomSheet(
+                      isDismissible: false,
+                      // TODO Solve this issue
+                      // routeSettings: ,
                       context: context,
                       builder: (context) => MinimalDetail(
                         movie: recommendation,
-                        // keyValue: 'Prev',
-                        // closeKeyValue: 'closed',
+                        keyValue: recommendation.id.toString(),
+                        closeKeyValue: recommendation.id.toString(),
                       ),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
