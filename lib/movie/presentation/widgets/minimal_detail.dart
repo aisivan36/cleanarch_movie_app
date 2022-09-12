@@ -17,7 +17,6 @@ class MinimalDetail extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  // TODO Have to write this up
   Widget build(BuildContext context) => SizedBox(
         height: 300.0,
         child: Column(
@@ -140,12 +139,16 @@ class MinimalDetail extends StatelessWidget {
                   key: Key(keyValue ?? '-'),
                   // TODO Watch this out, this is still buggy when tapped into when its back you will not back to the previous page
                   onPressed: () => Navigator.pushNamed(
-                      context, MovieDetailPage.routeName,
-                      arguments: movie.id),
+                    context,
+                    MovieDetailPage.routeName,
+                    arguments: movie.id,
+                  ),
                   style: TextButton.styleFrom(
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0, vertical: 16.0),
+                      horizontal: 16.0,
+                      vertical: 16.0,
+                    ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
