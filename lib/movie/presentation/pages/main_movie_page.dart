@@ -6,6 +6,7 @@ import 'package:cleanarch_movie_app/core/utils/urls.dart';
 import 'package:cleanarch_movie_app/movie/presentation/pages/popular_movies_page.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_images_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/movie_list_notifier.dart';
+import 'package:cleanarch_movie_app/movie/presentation/widgets/horizontal_item_list.dart';
 import 'package:cleanarch_movie_app/movie/presentation/widgets/minimal_detail.dart';
 import 'package:cleanarch_movie_app/movie/presentation/widgets/sub_heading.dart';
 import 'package:flutter/foundation.dart';
@@ -232,7 +233,79 @@ class _MainMoviePageState extends State<MainMoviePage> {
                 Navigator.pushNamed(context, PopularMoviesPage.routeName);
               },
             ),
+            Consumer<MovieListNotifier>(
+              builder: (context, value, child) {
+                if (value.popularMoviesState == RequestState.loaded) {
+                  return FadeIn(
+                    duration: const Duration(milliseconds: 500),
+                    child: HorizontalItemList(movies: value.popularMovies),
+                  );
+                } else if (value.popularMoviesState == RequestState.empty) {
+                  return const Center(
+                    child: Text('Failed to load data'),
+                  );
+                } else {
+                  return const _ShimmerLoading();
+                }
+              },
+            ),
+            SubHeading(
+              text: 'TopRated',
+              valueKey: 'seeTopRatedMovies',
+              onSeeMoreTapped: () {},
+            ),
+            Consumer<MovieListNotifier>(
+              builder: (context, value, child) {
+                if (value.topRatedMoviesState == RequestState.loaded) {
+                  return FadeIn(
+                    duration: const Duration(milliseconds: 500),
+                    child: HorizontalItemList(movies: value.topRatedMovies),
+                  );
+                } else if (value.topRatedMoviesState == RequestState.empty) {
+                  return const Center(
+                    child: Text('Failed to load data'),
+                  );
+                } else {
+                  return const _ShimmerLoading();
+                }
+              },
+            ),
+            const SizedBox(
+              height: 50.0,
+            )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _ShimmerLoading extends StatelessWidget {
+  const _ShimmerLoading();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 170.0,
+      child: ListView.builder(
+        shrinkWrap: true,
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        itemCount: 5,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: Shimmer.fromColors(
+            baseColor: Colors.grey[850]!,
+            highlightColor: Colors.grey[800]!,
+            child: Container(
+              height: 170.0,
+              width: 120.0,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
+          ),
         ),
       ),
     );
