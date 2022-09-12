@@ -16,8 +16,11 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, MovieDetailPage.routeName,
-          arguments: movie.id),
+      onTap: () => Navigator.pushNamed(
+        context,
+        MovieDetailPage.routeName,
+        arguments: movie.id,
+      ),
       child: Container(
         padding: const EdgeInsets.all(8.0),
         margin: const EdgeInsets.only(bottom: 16.0),
