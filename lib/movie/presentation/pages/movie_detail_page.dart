@@ -96,7 +96,7 @@ class _MovieDetailContentState extends State<MovieDetailContent> {
         SliverAppBar(
           leading: InkWell(
             onTap: () {
-              Navigator.popAndPushNamed(context, PopularMoviesPage.routeName);
+              Navigator.maybePop(context);
             },
             child: const Icon(Icons.arrow_back_ios_outlined),
           ),
@@ -131,7 +131,7 @@ class _MovieDetailContentState extends State<MovieDetailContent> {
                 blendMode: BlendMode.dstIn,
                 child: CachedNetworkImage(
                   width: MediaQuery.of(context).size.width,
-                  imageUrl: Urls.imageUrl(widget.movie.backdropPath!),
+                  imageUrl: Urls.imageUrl(widget.movie.backdropPath ?? ''),
                   fit: BoxFit.cover,
                 ),
               ),

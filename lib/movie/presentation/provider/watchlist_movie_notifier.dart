@@ -12,7 +12,7 @@ class WatchlistMovieNotifier extends ChangeNotifier {
   List<Movie> get watchlistMovies => _watchlistMovies;
 
   var _watchlistState = RequestState.empty;
-  RequestState get watchlisState => _watchlistState;
+  RequestState get watchlistState => _watchlistState;
 
   String _message = '';
   String get message => _message;
