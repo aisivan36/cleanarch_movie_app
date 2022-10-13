@@ -1,3 +1,4 @@
+import 'package:cleanarch_movie_app/about_page.dart';
 import 'package:cleanarch_movie_app/core/presentation/pages/home_page.dart';
 import 'package:cleanarch_movie_app/core/presentation/pages/watchlist_page.dart';
 import 'package:cleanarch_movie_app/core/presentation/provider/home_notifier.dart';
@@ -166,8 +167,8 @@ class MyApp extends StatelessWidget {
 
             case WatchlistPage.routeName:
               return MaterialPageRoute(builder: (_) => const WatchlistPage());
-            // case AboutPage.routeName:
-            //   return MaterialPageRoute(builder: (_) => const AboutPage());
+            case AboutPage.routeName:
+              return MaterialPageRoute(builder: (_) => const AboutPage());
 
             default:
               return MaterialPageRoute(

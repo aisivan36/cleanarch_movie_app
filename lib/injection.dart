@@ -20,6 +20,10 @@ import 'package:cleanarch_movie_app/movie/presentation/provider/movie_list_notif
 import 'package:cleanarch_movie_app/movie/presentation/provider/popular_movies_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:cleanarch_movie_app/seach/domain/usecases/search_movies.dart';
+import 'package:cleanarch_movie_app/seach/domain/usecases/search_tvs.dart';
+import 'package:cleanarch_movie_app/seach/presentation/bloc/search_bloc.dart';
+import 'package:cleanarch_movie_app/seach/presentation/blog/search_bloc.dart';
 import 'package:cleanarch_movie_app/tv/data/datasources/db/tv_database_helper.dart';
 import 'package:cleanarch_movie_app/tv/data/datasources/tv_local_data_source.dart';
 import 'package:cleanarch_movie_app/tv/data/datasources/tv_remote_data_source.dart';
@@ -49,8 +53,8 @@ import 'package:get_it/get_it.dart';
 final locator = GetIt.instance;
 
 void init() {
-  /// TODO Movie Bloc Search and TV
-  ///
+  locator.registerFactory(() => MovieSearchBloc(locator()));
+  locator.registerFactory(() => TvSearchBloc(locator()));
 
   // Provider
   locator.registerFactory(() => HomeNotifier());
@@ -143,7 +147,7 @@ void init() {
   locator.registerLazySingleton(() => GetTopRatedMovies(locator()));
   locator.registerLazySingleton(() => GetMovieDetail(locator()));
   locator.registerLazySingleton(() => GetMovieRecommendations(locator()));
-  // locator.registerLazySingleton(() => SearchMovies(locator()));
+  locator.registerLazySingleton(() => SearchMovies(repository: locator()));
   locator.registerLazySingleton(() => GetMovieImages(locator()));
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
 
@@ -154,7 +158,7 @@ void init() {
   locator.registerLazySingleton(() => GetTvDetail(locator()));
   locator.registerLazySingleton(() => GetTvSeasonEpisodes(locator()));
   locator.registerLazySingleton(() => GetTvRecommendations(locator()));
-  // locator.registerLazySingleton(() => SearchTvs(locator()));
+  locator.registerLazySingleton(() => SearchTvs(repository: locator()));
   locator.registerLazySingleton(() => GetTvImages(locator()));
   locator.registerLazySingleton(() => GetWatchlistTvs(locator()));
 
