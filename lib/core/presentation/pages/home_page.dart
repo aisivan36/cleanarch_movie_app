@@ -5,6 +5,7 @@ import 'package:cleanarch_movie_app/core/styles/text_styles.dart';
 import 'package:cleanarch_movie_app/core/utils/routes.dart';
 import 'package:cleanarch_movie_app/core/utils/state_enum.dart';
 import 'package:cleanarch_movie_app/movie/presentation/pages/main_movie_page.dart';
+import 'package:cleanarch_movie_app/tv/presentation/pages/main_tv_page.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -278,15 +279,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           onNotification: _scrollListener,
                           child: Consumer<HomeNotifier>(
                             builder: (context, value, child) {
+                              /// Home Screen Navigate between Movie and Tv
                               final state = value.state;
                               if (state == GeneralContentType.movie) {
                                 return const MainMoviePage();
                               } else {
-                                return const Scaffold(
-                                  body: Center(
-                                    child: Text('MainTVPage'),
-                                  ),
-                                );
+                                return const MainTvPage();
                               }
                             },
                           ),
