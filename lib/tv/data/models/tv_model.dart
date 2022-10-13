@@ -27,7 +27,7 @@ class TvModel extends Equatable {
 
   factory TvModel.fromJson(Map<String, dynamic> json) => TvModel(
         backdropPath: json['backdrop_path'],
-        firstAirDate: json['first_air_date'],
+        firstAirDate: json['first_air_date'] ?? '',
         genreIds: List<int>.from(json['genre_ids'].map((x) => x)),
         id: json['id'],
         name: json['name'],

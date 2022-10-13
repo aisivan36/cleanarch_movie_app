@@ -14,6 +14,9 @@ import 'package:cleanarch_movie_app/movie/presentation/provider/movie_images_not
 import 'package:cleanarch_movie_app/movie/presentation/provider/popular_movies_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:cleanarch_movie_app/movie/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:cleanarch_movie_app/seach/presentation/bloc/search_bloc.dart';
+import 'package:cleanarch_movie_app/seach/presentation/pages/movie_search_page.dart';
+import 'package:cleanarch_movie_app/seach/presentation/pages/tv_search_page.dart';
 import 'package:cleanarch_movie_app/tv/presentation/pages/popular_tvs_page.dart';
 import 'package:cleanarch_movie_app/tv/presentation/pages/top_rated_tvs_page.dart';
 import 'package:cleanarch_movie_app/tv/presentation/pages/tv_detail_page.dart';
@@ -26,6 +29,7 @@ import 'package:cleanarch_movie_app/tv/presentation/provider/tv_season_episodes_
 import 'package:cleanarch_movie_app/tv/presentation/provider/watchlist_tv_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import 'injection.dart' as di;
@@ -106,7 +110,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<WatchlistTvNotifier>(
           create: (_) => di.locator<WatchlistTvNotifier>(),
         ),
-        // TODO Search TVs and Movies
+        BlocProvider<MovieSearchBloc>(
+          create: (_) => di.locator<MovieSearchBloc>(),
+        ),
+        BlocProvider<TvSearchBloc>(
+          create: (_) => di.locator<TvSearchBloc>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Movie Database App',
@@ -159,11 +168,10 @@ class MyApp extends StatelessWidget {
                 },
                 settings: settings,
               );
-            // case MovieSearchPage.routeName:
-            //   return MaterialPageRoute(builder: (_) => const MovieSearchPage());
-            // case TvSearchPage.routeName:
-            //   return MaterialPageRoute(builder: (_) => const TvSearchPage());
-            // TODO adding more pages here
+            case MovieSearchPage.routeName:
+              return MaterialPageRoute(builder: (_) => const MovieSearchPage());
+            case TvSearchPage.routeName:
+              return MaterialPageRoute(builder: (_) => const TvSearchPage());
 
             case WatchlistPage.routeName:
               return MaterialPageRoute(builder: (_) => const WatchlistPage());

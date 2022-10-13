@@ -23,7 +23,6 @@ import 'package:cleanarch_movie_app/movie/presentation/provider/watchlist_movie_
 import 'package:cleanarch_movie_app/seach/domain/usecases/search_movies.dart';
 import 'package:cleanarch_movie_app/seach/domain/usecases/search_tvs.dart';
 import 'package:cleanarch_movie_app/seach/presentation/bloc/search_bloc.dart';
-import 'package:cleanarch_movie_app/seach/presentation/blog/search_bloc.dart';
 import 'package:cleanarch_movie_app/tv/data/datasources/db/tv_database_helper.dart';
 import 'package:cleanarch_movie_app/tv/data/datasources/tv_local_data_source.dart';
 import 'package:cleanarch_movie_app/tv/data/datasources/tv_remote_data_source.dart';

@@ -31,13 +31,18 @@ class _MainMoviePageState extends State<MainMoviePage> {
         Provider.of<MovieListNotifier>(context, listen: false)
             .fetchNowPlayingMovies()
             .whenComplete(
-              () => Provider.of<MovieImagesNotifier>(context, listen: false)
+          () {
+            // Check the mounted widget
+            if (!mounted) {
+              return Provider.of<MovieImagesNotifier>(context, listen: false)
                   .fetchMovieImages(
                 Provider.of<MovieListNotifier>(context, listen: false)
                     .nowPlayingMovies[0]
                     .id,
-              ),
-            );
+              );
+            }
+          },
+        );
 
         /// Fetch Popular and TopRated Movies
         context.read<MovieListNotifier>().fetchPopularMovies();
